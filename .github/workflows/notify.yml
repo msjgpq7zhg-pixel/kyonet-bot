@@ -20,3 +20,11 @@ jobs:
       - run: node notify.js
         env:
           WEBHOOK: ${{ secrets.WEBHOOK }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run script
+        working-directory: ./
+        run: node notify.js
+        env:
+          WEBHOOK: ${{ secrets.WEBHOOK }}
