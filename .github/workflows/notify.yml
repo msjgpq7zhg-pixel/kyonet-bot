@@ -1,0 +1,24 @@
+name: Kyonet Notify
+
+on:
+  schedule:
+    - cron: '0 23 * * *'  # 朝8時（JST）
+    - cron: '0 11 * * *'  # 夜20時（JST）
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install node-fetch
+
+      - run: node notify.js
+        env:
+          WEBHOOK: ${{ secrets.WEBHOOK }}
