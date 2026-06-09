@@ -13,18 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Show files (debug)
+        run: ls -R
 
-      - run: node notify.js
-        env:
-          WEBHOOK: ${{ secrets.WEBHOOK }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Run script
-        working-directory: ./
+      - name: Run notify script
         run: node notify.js
         env:
           WEBHOOK: ${{ secrets.WEBHOOK }}
