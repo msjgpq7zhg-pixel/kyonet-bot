@@ -15,18 +15,31 @@ async function send(content) {
     });
 }
 
-(async () => {
+function buildMessage(label) {
 
-    const hour = new Date().getHours();
+    const tasks = getTasks();
 
-    let msg = "📅 課題一覧\n\n";
+    let msg = `📅 ${label}の課題一覧\n\n`;
 
-    getTasks().forEach(t => {
+    tasks.forEach(t => {
         msg += `【課題】${t.title}\n【期限】${t.deadline}\n\n`;
     });
 
-    if (hour === 8 || hour === 20) {
-        await send(msg);
+    return msg;
+}
+
+(async () => {
+
+    // JST想定（GitHub ActionsはUTC）
+    const now = new Date();
+    const hour = now.getUTCHours() + 9;
+
+    if (hour === 8) {
+        await send(buildMessage("朝"));
+    }
+
+    if (hour === 20) {
+        await send(buildMessage("夜"));
     }
 
 })();
