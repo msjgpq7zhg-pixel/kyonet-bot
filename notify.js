@@ -44,6 +44,10 @@ await new Promise(resolve => setTimeout(resolve, 5000));
 console.log("現在URL:", page.url());
 console.log("タイトル:", await page.title());
 
+await page.screenshot({ path: "after-login.png", fullPage: true });
+
+console.log("スクショ保存");
+
 const bodyText = await page.evaluate(() => document.body.innerText);
 
 console.log("-----画面内容-----");
