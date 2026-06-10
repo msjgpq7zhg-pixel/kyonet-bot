@@ -44,6 +44,12 @@ await new Promise(resolve => setTimeout(resolve, 5000));
 console.log("現在URL:", page.url());
 console.log("タイトル:", await page.title());
 
+const bodyText = await page.evaluate(() => document.body.innerText);
+
+console.log("-----画面内容-----");
+console.log(bodyText);
+console.log("------------------");
+
 await browser.close();
     await browser.close();
 
