@@ -27,6 +27,9 @@ const puppeteer = require("puppeteer");
 
    console.log("ページ読み込み完了");
 
+await page.waitForSelector("#loginForm\\:userId");
+console.log("ログインフォーム発見");
+
 await page.type("#loginForm\\:userId", ID);
 await page.type("#loginForm\\:password", PASS);
 
