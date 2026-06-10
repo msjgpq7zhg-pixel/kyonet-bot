@@ -1,0 +1,22 @@
+name: Kyonet Notify
+
+on:
+  schedule:
+    - cron: '0 23 * * *'  # 08:00 JST
+    - cron: '0 11 * * *'  # 20:00 JST
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show files (debug)
+        run: ls -R
+
+      - name: Run notify.js
+        run: node notify.js
+        env:
+          WEBHOOK: ${{ secrets.WEBHOOK }}
