@@ -16,7 +16,7 @@ jobs:
       - name: Show files (debug)
         run: ls -R
 
-      - name: Run notify script
-        run: node ./notify.js
+      - name: Run script
+        run: node notify.js
         env:
           WEBHOOK: ${{ secrets.WEBHOOK }}
