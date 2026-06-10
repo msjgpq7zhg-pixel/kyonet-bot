@@ -1,12 +1,23 @@
 const WEBHOOK = process.env.WEBHOOK;
 
 function getTasks() {
-    return [
-        { title: "第6回レポート", deadline: "2026/06/10" },
-        { title: "第7回RP", deadline: "2026/06/15" }
-    ];
-}
 
+    const items = [...document.querySelectorAll(".signPortal")];
+
+    return items
+        .map(el => {
+            const parent = el.closest("li") || el.parentElement;
+            const text = parent?.innerText || "";
+
+            // 課題・テストだけ抽出
+            if (!text.includes("課題") && !text.includes("テスト")) return null;
+
+            return {
+                title: text.trim()
+            };
+        })
+        .filter(Boolean);
+}
 async function send(content) {
     await fetch(WEBHOOK, {
         method: "POST",
