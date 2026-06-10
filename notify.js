@@ -1,3 +1,6 @@
+const ID = process.env.KYONET_ID;
+const PASS = process.env.KYONET_PASS;
+
 console.log("ID exists:", !!ID);
 console.log("PASS exists:", !!PASS);
 
