@@ -20,12 +20,14 @@ const puppeteer = require("puppeteer");
 
     console.log("開始");
 
-    await page.goto("https://kyonet.kyoritsu-wu.ac.jp/", {
-        waitUntil: "domcontentloaded",
-        timeout: 30000
-    });
+   await page.goto("https://kyonet.kyoritsu-wu.ac.jp/", {
+    waitUntil: "networkidle2",
+    timeout: 60000
+});
 
-   console.log("ページ読み込み完了");
+await new Promise(resolve => setTimeout(resolve, 3000));
+    
+console.log("ページ読み込み完了");
 
 console.log("URL:", page.url());
 
