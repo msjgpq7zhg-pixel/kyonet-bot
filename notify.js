@@ -48,13 +48,15 @@ await page.screenshot({ path: "after-login.png", fullPage: true });
 
 console.log("スクショ保存");
 
-const bodyText = await page.evaluate(() => document.body.innerText);
+const deadlineTab = await page.evaluate(() => {
+    const el = document.querySelector('#funcForm\\:j_idt176\\:j_idt229');
+    return el ? el.innerText : "見つからない";
+});
 
-const matches = bodyText.match(/テスト.*?\d{4}\/\d{2}\/\d{2}.*/g);
+console.log("=====期限あり=====");
+console.log(deadlineTab);
+console.log("=================");
 
-console.log("-----検出結果-----");
-console.log(matches);
-console.log("------------------");
 
 await browser.close();
     await browser.close();
