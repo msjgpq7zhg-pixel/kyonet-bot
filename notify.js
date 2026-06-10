@@ -96,7 +96,22 @@ const targets = lines.filter(x =>
 );
 
 console.log("=====抽出結果=====");
-console.log(targets);
+console.log("=====通知用=====");
+
+for (const item of targets) {
+    const deadline = item.match(/期限：(\d{4}\/\d{2}\/\d{2})/)?.[1] || "不明";
+
+    const title = item
+        .replace(/^課題\d{4}\/\d{2}\/\d{2}/, "")
+        .replace(/^テスト\d{4}\/\d{2}\/\d{2}/, "")
+        .replace(/\[.*?\]/, "")
+        .replace(/期限：.*/, "")
+        .trim();
+
+    console.log(`📌 ${title}`);
+    console.log(`📅 ${deadline}`);
+    console.log("");
+}
 console.log("=================");
 console.log("=================");
 
