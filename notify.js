@@ -85,6 +85,19 @@ const deadlineTab = await page.evaluate(() => {
 
 console.log("=====期限あり=====");
 console.log(deadlineTab);
+const lines = deadlineTab
+    .split("\n")
+    .map(x => x.trim())
+    .filter(x => x);
+
+const targets = lines.filter(x =>
+    x.startsWith("課題") ||
+    x.startsWith("テスト")
+);
+
+console.log("=====抽出結果=====");
+console.log(targets);
+console.log("=================");
 console.log("=================");
 
 
