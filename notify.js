@@ -65,6 +65,12 @@ const moreButtonHtml = await page.evaluate(() => {
 console.log("=====もっと見るHTML=====");
 console.log(moreButtonHtml);
 console.log("=======================");;
+
+await page.click("#funcForm\\:j_idt176\\:j_idt280");
+
+console.log("もっと見る押した");
+
+await new Promise(resolve => setTimeout(resolve, 5000));
     
 const deadlineTab = await page.evaluate(() => {
     const el = document.querySelector('#funcForm\\:j_idt176\\:j_idt229');
