@@ -112,15 +112,15 @@ for (const item of targets) {
         .replace(/期限：.*/, "")
         .trim();
 
-    const deadlineDate = new Date(deadline);
-    deadlineDate.setHours(0,0,0,0);
+   const deadlineDate = new Date(deadline);
+deadlineDate.setHours(0,0,0,0);
 
-    const diffDays =
-        (deadlineDate - today) / (1000 * 60 * 60 * 24);
-
+const diffDays = Math.floor(
+    (deadlineDate - today) / (1000 * 60 * 60 * 24)
+);
     const type = item.startsWith("テスト")
-        ? "テスト📝"
-        : "課題📄";
+        ? "📝テスト"
+        : "📄課題";
 
     console.log(`${type} ${title}`);
     console.log(`【期限】 ${deadline}（あと${diffDays}日）`);
