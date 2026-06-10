@@ -18,3 +18,9 @@ jobs:
         env:
           KYONET_ID: ${{ secrets.KYONET_ID }}
           KYONET_PASS: ${{ secrets.KYONET_PASS }}
+
+      - name: Upload screenshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshot
+          path: after-login.png
