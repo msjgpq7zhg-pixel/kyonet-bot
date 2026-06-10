@@ -1,9 +1,6 @@
-name: Kyonet Notify
+name: Kyonet Test
 
 on:
-  schedule:
-    - cron: '0 23 * * *'  # 08:00 JST
-    - cron: '0 11 * * *'  # 20:00 JST
   workflow_dispatch:
 
 jobs:
@@ -13,10 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Show files (debug)
-        run: ls -R
+      - name: Install Puppeteer
+        run: npm install puppeteer
 
-      - name: Run notify.js
+      - name: Run test
         run: node notify.js
-        env:
-          WEBHOOK: ${{ secrets.WEBHOOK }}
