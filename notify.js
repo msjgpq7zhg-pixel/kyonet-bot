@@ -108,7 +108,12 @@ for (const item of targets) {
         .replace(/期限：.*/, "")
         .trim();
 
-   console.log(`【課題】 ${title}`);
+  const deadlineDate = new Date(deadline);
+    const diffDays = Math.ceil(
+        (deadlineDate - today) / (1000 * 60 * 60 * 24)
+    );
+
+    console.log(`【課題】 ${title}`);
     console.log(`【期限】 ${deadline}（あと${diffDays}日）`);
     console.log("");
 }
