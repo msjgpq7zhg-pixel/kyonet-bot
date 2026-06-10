@@ -120,7 +120,11 @@ for (const item of targets) {
         (deadlineDate - today) / (1000 * 60 * 60 * 24)
     );
 
-    console.log(`【課題】 ${title}`);
+   const type = item.startsWith("テスト")
+    ? "テスト📝"
+    : "課題📄";
+
+console.log(`${type} ${title}`);
     console.log(`【期限】 ${deadline}（あと${diffDays}日）`);
     console.log("");
 }
