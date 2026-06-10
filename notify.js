@@ -98,7 +98,12 @@ const targets = lines.filter(x =>
 console.log("=====抽出結果=====");
 console.log("=====通知用=====");
 
-const today = new Date();
+const today = new Date(
+    new Date().toLocaleString("ja-JP", {
+        timeZone: "Asia/Tokyo"
+    })
+);
+
 today.setHours(0,0,0,0);
 
 for (const item of targets) {
@@ -120,7 +125,7 @@ const diffDays = Math.floor(
 );
     const type = item.startsWith("テスト")
         ? "📝テスト"
-        : "📄課題";
+        : "📄課題　";
 
     console.log(`${type} ${title}`);
     console.log(`【期限】 ${deadline}（あと${diffDays}日）`);
