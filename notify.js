@@ -47,7 +47,16 @@ console.log("タイトル:", await page.title());
 await page.screenshot({ path: "after-login.png", fullPage: true });
 
 console.log("スクショ保存");
+    
+await page.evaluate(() => {
+    const btn = [...document.querySelectorAll("*")]
+        .find(el => el.innerText?.includes("もっと見る"));
 
+    if (btn) btn.click();
+});
+
+await new Promise(resolve => setTimeout(resolve, 3000));
+    
 const deadlineTab = await page.evaluate(() => {
     const el = document.querySelector('#funcForm\\:j_idt176\\:j_idt229');
     return el ? el.innerText : "見つからない";
