@@ -99,6 +99,10 @@ console.log("=====抽出結果=====");
 console.log("=====通知用=====");
 
 const today = new Date();
+today.setHours(0,0,0,0);
+
+const deadlineDate = new Date(deadline);
+deadlineDate.setHours(0,0,0,0);
 
 for (const item of targets) {
     const deadline = item.match(/期限：(\d{4}\/\d{2}\/\d{2})/)?.[1] || "不明";
