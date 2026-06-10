@@ -98,6 +98,8 @@ const targets = lines.filter(x =>
 console.log("=====抽出結果=====");
 console.log("=====通知用=====");
 
+const today = new Date();
+
 for (const item of targets) {
     const deadline = item.match(/期限：(\d{4}\/\d{2}\/\d{2})/)?.[1] || "不明";
 
@@ -108,7 +110,8 @@ for (const item of targets) {
         .replace(/期限：.*/, "")
         .trim();
 
-  const deadlineDate = new Date(deadline);
+    const deadlineDate = new Date(deadline);
+
     const diffDays = Math.ceil(
         (deadlineDate - today) / (1000 * 60 * 60 * 24)
     );
