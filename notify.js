@@ -25,12 +25,23 @@ const puppeteer = require("puppeteer");
         timeout: 30000
     });
 
-    console.log("ページ読み込み完了");
+   console.log("ページ読み込み完了");
 
-await new Promise(resolve => setTimeout(resolve, 2000));
+await page.type("#loginForm\\:userId", ID);
+await page.type("#loginForm\\:password", PASS);
 
-console.log("ここまでOK");
+console.log("入力完了");
 
+await page.click("#loginForm\\:loginButton");
+
+console.log("ログインボタン押下");
+
+await new Promise(resolve => setTimeout(resolve, 5000));
+
+console.log("現在URL:", page.url());
+console.log("タイトル:", await page.title());
+
+await browser.close();
     await browser.close();
 
 })();
