@@ -18,6 +18,8 @@ const PASS = process.env.KYONET_PASS;
 
     console.log("ログインページ開いた");
 
+    console.log("ID:", process.env.KYONET_ID);
+console.log("PASS:", process.env.KYONET_PASS);
     // ↓ここは後で調整する可能性あり
     await page.type("input[type='text']", ID);
     await page.type("input[type='password']", PASS);
