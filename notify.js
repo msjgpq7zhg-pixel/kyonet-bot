@@ -50,8 +50,10 @@ console.log("スクショ保存");
 
 const bodyText = await page.evaluate(() => document.body.innerText);
 
-console.log("-----画面内容-----");
-console.log(bodyText);
+const matches = bodyText.match(/テスト.*?\d{4}\/\d{2}\/\d{2}.*/g);
+
+console.log("-----検出結果-----");
+console.log(matches);
 console.log("------------------");
 
 await browser.close();
