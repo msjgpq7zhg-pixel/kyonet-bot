@@ -48,14 +48,20 @@ await page.screenshot({ path: "after-login.png", fullPage: true });
 
 console.log("スクショ保存");
     
-await page.evaluate(() => {
-    const btn = [...document.querySelectorAll("*")]
-        .find(el => el.innerText?.includes("もっと見る"));
+const clicked = await page.evaluate(() => {
+    const btn = [...document.querySelectorAll("a,button,span,div")]
+        .find(el => el.textContent?.trim() === "もっと見る");
 
-    if (btn) btn.click();
+    if (btn) {
+        btn.click();
+        return true;
+    }
+    return false;
 });
 
-await new Promise(resolve => setTimeout(resolve, 3000));
+console.log("もっと見るクリック:", clicked);
+
+await new Promise(resolve => setTimeout(resolve, 5000));
     
 const deadlineTab = await page.evaluate(() => {
     const el = document.querySelector('#funcForm\\:j_idt176\\:j_idt229');
