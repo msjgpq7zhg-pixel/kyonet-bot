@@ -108,8 +108,8 @@ for (const item of targets) {
         .replace(/期限：.*/, "")
         .trim();
 
-    console.log(`📌 ${title}`);
-    console.log(`📅 ${deadline}`);
+   console.log(`【課題】 ${title}`);
+    console.log(`【期限】 ${deadline}（あと${diffDays}日）`);
     console.log("");
 }
 console.log("=================");
