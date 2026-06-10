@@ -15,3 +15,6 @@ jobs:
 
       - name: Run test
         run: node notify.js
+        env:
+          KYONET_ID: ${{ secrets.KYONET_ID }}
+          KYONET_PASS: ${{ secrets.KYONET_PASS }}
