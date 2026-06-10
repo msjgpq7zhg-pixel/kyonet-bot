@@ -48,20 +48,16 @@ await page.screenshot({ path: "after-login.png", fullPage: true });
 
 console.log("スクショ保存");
     
-const clicked = await page.evaluate(() => {
-    const btn = [...document.querySelectorAll("a,button,span,div")]
+const moreButtonHtml = await page.evaluate(() => {
+    const btn = [...document.querySelectorAll("*")]
         .find(el => el.textContent?.trim() === "もっと見る");
 
-    if (btn) {
-        btn.click();
-        return true;
-    }
-    return false;
+    return btn ? btn.outerHTML : "見つからない";
 });
 
-console.log("もっと見るクリック:", clicked);
-
-await new Promise(resolve => setTimeout(resolve, 5000));
+console.log("=====もっと見るHTML=====");
+console.log(moreButtonHtml);
+console.log("=======================");;
     
 const deadlineTab = await page.evaluate(() => {
     const el = document.querySelector('#funcForm\\:j_idt176\\:j_idt229');
