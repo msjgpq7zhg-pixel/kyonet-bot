@@ -1,3 +1,6 @@
+console.log("ID exists:", !!ID);
+console.log("PASS exists:", !!PASS);
+
 const puppeteer = require("puppeteer");
 
 (async () => {
