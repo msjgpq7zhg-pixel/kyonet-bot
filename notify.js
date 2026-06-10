@@ -27,6 +27,11 @@ const puppeteer = require("puppeteer");
 
    console.log("ページ読み込み完了");
 
+console.log("URL:", page.url());
+
+const html = await page.content();
+console.log("HTML長さ:", html.length);
+
 await page.waitForSelector("#loginForm\\:userId");
 console.log("ログインフォーム発見");
 
@@ -70,6 +75,5 @@ console.log("=================");
 
 
 await browser.close();
-    await browser.close();
 
 })();
