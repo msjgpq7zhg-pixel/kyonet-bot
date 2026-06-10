@@ -21,9 +21,9 @@ const puppeteer = require("puppeteer");
 
     console.log("ページ読み込み完了");
 
-    await page.waitForTimeout(2000);
+await new Promise(resolve => setTimeout(resolve, 2000));
 
-    console.log("ここまでOK");
+console.log("ここまでOK");
 
     await browser.close();
 
