@@ -1,5 +1,20 @@
 const puppeteer = require("puppeteer");
 
+(async () => {
+
+    const browser = await puppeteer.launch({
+        headless: "new",
+        args: ["--no-sandbox"]
+    });
+
+    const page = await browser.newPage();
+
+    // ★ここを追加（重要）
+    page.setDefaultTimeout(30000);
+    page.setDefaultNavigationTimeout(30000);
+
+    console.log("開始");
+
 const ID = process.env.KYONET_ID;
 const PASS = process.env.KYONET_PASS;
 
@@ -12,10 +27,14 @@ const PASS = process.env.KYONET_PASS;
 
     const page = await browser.newPage();
 
-    await page.goto("https://kyonet.kyoritsu-wu.ac.jp/", {
-        waitUntil: "networkidle2"
-    });
+   await page.goto("https://kyonet.kyoritsu-wu.ac.jp/", {
+    waitUntil: "domcontentloaded",
+    timeout: 30000
+});
 
+console.log("ページ読み込み完了");
+await page.waitForTimeout(2000);
+    
     console.log("ログインページ開いた");
 
     console.log("ID:", process.env.KYONET_ID);
