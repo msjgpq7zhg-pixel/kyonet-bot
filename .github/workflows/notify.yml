@@ -1,7 +1,11 @@
-name: Kyonet Test
+name: Kyonet Bot
 
 on:
   workflow_dispatch:
+
+  schedule:
+    - cron: '0 23 * * *'
+    - cron: '0 11 * * *'
 
 jobs:
   run:
@@ -13,14 +17,9 @@ jobs:
       - name: Install Puppeteer
         run: npm install puppeteer
 
-      - name: Run test
+      - name: Run Bot
         run: node notify.js
         env:
           KYONET_ID: ${{ secrets.KYONET_ID }}
           KYONET_PASS: ${{ secrets.KYONET_PASS }}
-
-      - name: Upload screenshot
-        uses: actions/upload-artifact@v4
-        with:
-          name: screenshot
-          path: after-login.png
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
