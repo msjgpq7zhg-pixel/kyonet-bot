@@ -1,5 +1,6 @@
 const ID = process.env.KYONET_ID;
 const PASS = process.env.KYONET_PASS;
+const WEBHOOK = process.env.WEBHOOK;
 
 console.log("ID exists:", !!ID);
 console.log("PASS exists:", !!PASS);
@@ -98,13 +99,7 @@ const targets = lines.filter(x =>
 console.log("=====抽出結果=====");
 console.log("=====通知用=====");
 
-const today = new Date(
-    new Date().toLocaleString("ja-JP", {
-        timeZone: "Asia/Tokyo"
-    })
-);
-
-today.setHours(0,0,0,0);
+let message = "📚 Kyonet課題通知\n\n";
 
 for (const item of targets) {
 
@@ -117,24 +112,39 @@ for (const item of targets) {
         .replace(/期限：.*/, "")
         .trim();
 
-   const deadlineDate = new Date(deadline);
-deadlineDate.setHours(0,0,0,0);
+    const type = item.startsWith("課題")
+        ? "📄課題"
+        : "📝テスト";
 
-const diffDays = Math.floor(
-    (deadlineDate - today) / (1000 * 60 * 60 * 24)
-);
-    const type = item.startsWith("テスト")
-        ? "📝テスト"
-        : "📄課題　";
+    const deadlineDate = new Date(deadline);
+    deadlineDate.setHours(0,0,0,0);
 
-    console.log(`${type} ${title}`);
-    console.log(`【期限】 ${deadline}（あと${diffDays}日）`);
-    console.log("");
+    const diffDays = Math.floor(
+        (deadlineDate - today) / (1000 * 60 * 60 * 24)
+    );
+
+    message += `${type} ${title}\n`;
+    message += `📅 ${deadline}（あと${diffDays}日）\n\n`;
 }
+
+console.log(message);
+
+await fetch(WEBHOOK, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        content: message
+    })
+});
+
+console.log("Discord送信完了");
 console.log("=================");
 console.log("=================");
 
 
+    
 await browser.close();
 
 })();
