@@ -97,6 +97,13 @@ const targets = lines.filter(x =>
 );
 
 console.log("=====抽出結果=====");
+const today = new Date(
+    new Date().toLocaleString("ja-JP", {
+        timeZone: "Asia/Tokyo"
+    })
+);
+
+today.setHours(0, 0, 0, 0);
 console.log("=====通知用=====");
 
 let message = "📚 Kyonet課題通知\n\n";
